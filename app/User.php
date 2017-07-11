@@ -33,4 +33,8 @@ class User extends Authenticatable
         // 
         // return \App\Models\UserInfo::find($this->id);
     }
+
+    public function roles(){
+        return $this->belongsToMany('App\Models\Role', 'user_role_xref');
+    }
 }

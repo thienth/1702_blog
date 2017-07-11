@@ -88,9 +88,14 @@ Route::get('users/{id?}', function($id = null){
 	if($id == null){
 		dd(User::all());
 	}else{
-		$user = UserInfo::find($id);
-		$info = $user->GetUser;
-		dd($info);
+		$user = User::find($id);
+
+		// Get user info 1-1
+		// $info = $user->GetUser;
+		// dd($info);
+		// 
+		// dd($user);
+		dd($user->roles);
 	}
 });
 
