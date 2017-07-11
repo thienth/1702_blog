@@ -41,21 +41,37 @@ Route::get('/get-list-cate/{id?}', function($id = null){
 })->name('list-cate');
 // Tìm kiếm trong bảng bài viết
 Route::get('search/{keyword?}', function($keyword = ""){
-	// $listPost = Post::where('title', 'like', "%$keyword%")
-	// 					->orWhere('content', 'like', "%$keyword%")
-	// 					->orderBy('title')
-	// 					->get();
+	$listPost = Post::where('title', 'like', "%$keyword%")
+						->orWhere('content', 'like', "%$keyword%")
+						->orderBy('title')
+						->get();
 	// 					
 	// 					
-	$cate = Post::find(99)->category; 					
-	dd($cate);
+	// $cate = Post::find(99)->category; 					
+	// dd($cate);
+	$age = 500;
+	
+	return view('post.list', compact('listPost', 'age'));
 });
 
 // Demo thêm (insert) dữ liệu vào csdl
 Route::get('/insert-cate/{catename}', function($cateName){
 	$model = new Category();
+
 	$model->cate_name = $cateName;
-	$model->save();
+	DB::beginTransaction();
+	try{
+		// $model->cate_name = null;
+		$model->save();
+		$post = new Post();
+		$post->title = null;
+		$post->save();
+		DB::commit();
+	}catch(\Exception $ex){
+		DB::rollBack();
+		\Log::error('THIENTH - ERROR: '. $ex->getMessage());
+		dd($ex->getMessage());
+	}
 
 	return redirect(route('list-cate', ['id' => $model->id]));
 });
@@ -98,9 +114,6 @@ Route::get('users/{id?}', function($id = null){
 		dd($user->roles);
 	}
 });
-
-
-
 
 
 
