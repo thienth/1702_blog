@@ -43,6 +43,7 @@ Route::get('search/{keyword?}', function($keyword = ""){
 						->get();
 	dd($listPost);
 });
+
 // Demo thêm (insert) dữ liệu vào csdl
 Route::get('/insert-cate/{catename}', function($cateName){
 	$model = new Category();
@@ -52,7 +53,29 @@ Route::get('/insert-cate/{catename}', function($cateName){
 	return redirect(route('list-cate', ['id' => $model->id]));
 });
 
+// demo update data
+Route::get('update-cate/{id}/{newname}', function($id, $name){
+	$model = Category::find($id);
+	if($model){
+		$model->cate_name = $name;
+		$model->save();
+	}
+	return redirect(route('list-cate', ['id' => $id]));
+	
+});
 
+// demo remove
+Route::get('remove-cate/{id}', function($id){
+	$model = Category::find($id);
+	// xoa 1 record
+	if($model){
+		$model->delete([]);
+	}
+	// Xoa nhieu record
+	// Category::destroy([6, 7]);
+	return redirect(route('list-cate'));
+	
+});
 
 
 
