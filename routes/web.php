@@ -10,35 +10,55 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Models\Category;
+use App\Models\Post;
+Route::get('/', function () {
+    return view('welcome');
+})->name('homepage');
 
-// Route::get('/', function () {
-// 	dd(route('route-parameter', ['name' => 't3h', 'a' => '123456']));
-//     return view('welcome');
-// })->name('homepage');
-// Route::get('/route-parameter-thienth/{a}/{name}', function($a1){
+Route::get('not-found', function(){
+	echo "Oops! Notfound!";
+})->name('notfound');
+Route::get('/get-list-cate/{id?}', function($id = null){
+	try{
+		
+		if($id != null){
+			$listCates = Category::findOrFail($id);
+		}else{
+			$listCates = Category::orderBy('cate_name', 'desc')
+									->orderBy('id', 'desc')->get();
+		}
 
-// 	// process a->z
-// 	dd(route('homepage'));
-// 	return redirect(route('homepage'));
-// })->name('route-parameter');
-// Route::get('/optional-parameter/{a?}/{b}', function($a1 = "thienth"){
+	}catch(\Exception $ex){
+		
+		return redirect(route('notfound'));
+	}
+	dd($listCates);
+})->name('list-cate');
+// Tìm kiếm trong bảng bài viết
+Route::get('search/{keyword?}', function($keyword = ""){
+	$listPost = Post::where('title', 'like', "%$keyword%")
+						->orWhere('content', 'like', "%$keyword%")
+						->orderBy('title')
+						->get();
+	dd($listPost);
+});
+// Demo thêm (insert) dữ liệu vào csdl
+Route::get('/insert-cate/{catename}', function($cateName){
+	$model = new Category();
+	$model->cate_name = $cateName;
+	$model->save();
 
-// 	dd($a1);
-// });
+	return redirect(route('list-cate', ['id' => $model->id]));
+});
 
-// Route::get('user/{name}', function ($name) {
-//     dd($name);
-// })->where('name', '[A-Za-z]+');
-Route::get('maximum/{a?}/{b?}/{c?}', function($a = 0, $b = 0, $c = 0){
 
-	$max = $a >= $b ? $a : $b;
-	$max = $max >= $c ? $max : $c;
-	dd('So lon nhat la: ' . $max);
-	
-})->where([
-		'a' => '[0-9]+',
-		'b' => '[0-9]+',
-		'c' => '[0-9]+',
-	]);
+
+
+
+
+
+
+
 
 
