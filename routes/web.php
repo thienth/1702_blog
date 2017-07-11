@@ -26,9 +26,11 @@ Route::get('/get-list-cate/{id?}', function($id = null){
 		
 		if($id != null){
 			$listCates = Category::findOrFail($id);
+			dd($listCates->posts()->where('title', 'like', "%I THINK I can%")->get());
 		}else{
 			$listCates = Category::orderBy('cate_name', 'desc')
 									->orderBy('id', 'desc')->get();
+
 		}
 
 	}catch(\Exception $ex){
@@ -39,11 +41,14 @@ Route::get('/get-list-cate/{id?}', function($id = null){
 })->name('list-cate');
 // Tìm kiếm trong bảng bài viết
 Route::get('search/{keyword?}', function($keyword = ""){
-	$listPost = Post::where('title', 'like', "%$keyword%")
-						->orWhere('content', 'like', "%$keyword%")
-						->orderBy('title')
-						->get();
-	dd($listPost);
+	// $listPost = Post::where('title', 'like', "%$keyword%")
+	// 					->orWhere('content', 'like', "%$keyword%")
+	// 					->orderBy('title')
+	// 					->get();
+	// 					
+	// 					
+	$cate = Post::find(99)->category; 					
+	dd($cate);
 });
 
 // Demo thêm (insert) dữ liệu vào csdl

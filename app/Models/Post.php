@@ -7,4 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     protected $table = 'posts';
+
+    public function category()
+	{
+	    return $this->belongsTo('App\Models\Category', 'cate_id');
+	    // 
+	    // return App\Models\Category::where('id', $this->cate_id)->first();
+	}
 }
