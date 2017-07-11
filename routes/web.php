@@ -12,6 +12,8 @@
 */
 use App\Models\Category;
 use App\Models\Post;
+use App\User;
+use App\Models\UserInfo;
 Route::get('/', function () {
     return view('welcome');
 })->name('homepage');
@@ -75,6 +77,16 @@ Route::get('remove-cate/{id}', function($id){
 	// Category::destroy([6, 7]);
 	return redirect(route('list-cate'));
 	
+});
+
+Route::get('users/{id?}', function($id = null){
+	if($id == null){
+		dd(User::all());
+	}else{
+		$user = UserInfo::find($id);
+		$info = $user->GetUser;
+		dd($info);
+	}
 });
 
 
