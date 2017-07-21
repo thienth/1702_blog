@@ -16,30 +16,46 @@ class CategoryController extends Controller
      * @date 2017-07-21 - create new
      */
     public function index(){
-        Log::info("BEGIN " . get_class() . " => index()");
+        Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
 
         // Get all category 
         $cates = CategoryRepository::GetAll();
 
 
-        Log::info("END " . get_class() . " => index()");
+        Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
         return view('admin.cate.list', compact('cates'));
     }
 
+    /**
+     * Form thêm danh mục
+     * @author ThienTH
+     * @return view
+     * @date 2017-07-21 - create new
+     */
+    public function create(){
+        Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
+
+        // lấy ra model mẫu
+        $model = new Category();
+        $listCate = CategoryRepository::GetAll();
+
+
+        Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+        return view('admin.cate.form', compact('model', 'listCate'));
+    }
+
 	/**
-	 * Form thêm danh mục
+	 * Save category
 	 * @author ThienTH
 	 * @return view
 	 * @date 2017-07-21 - create new
 	 */
-    public function create(){
-    	Log::info("BEGIN " . get_class() . " => index()");
+    public function save(Request $rq){
+    	Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
 
-    	// lấy ra model mẫu
-    	$model = new Category();
-
-
-    	Log::info("END " . get_class() . " => index()");
-    	return view('admin.cate.form', compact('model'));
+        CategoryRepository::Save($rq);
+        
+    	Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+    	return view('admin.cate.form');
     }
 }

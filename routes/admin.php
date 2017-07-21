@@ -16,4 +16,7 @@ Route::get('category',
 Route::get('category/create', 
 	'Admin\CategoryController@create')->name('cate.create');
 
+Route::post('category/save', 
+	'Admin\CategoryController@save')->name('cate.save');
+
  ?>

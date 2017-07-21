@@ -9,7 +9,7 @@
 				<th>Cate name</th>
 				<th>Parent name</th>
 				<th> 
-					<a href="" class="btn btn-xs btn-success">Create</a>
+					<a href="{{route('cate.create')}}" class="btn btn-xs btn-success">Create</a>
 				</th>
 			</tr>
 		</thead>
