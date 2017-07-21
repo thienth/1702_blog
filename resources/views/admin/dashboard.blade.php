@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Quản lý danh mục')
+@section('title', 'Dashboard')
 @section('content')
 
 <div class="box-body table-responsive no-padding">
