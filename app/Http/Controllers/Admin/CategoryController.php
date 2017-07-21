@@ -44,18 +44,43 @@ class CategoryController extends Controller
         return view('admin.cate.form', compact('model', 'listCate'));
     }
 
+    /**
+     * Save category
+     * @author ThienTH
+     * @return view
+     * @date 2017-07-21 - create new
+     */
+    public function save(Request $rq){
+        Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
+
+        $result = CategoryRepository::Save($rq);
+        
+        Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+        
+        if($result){
+            return redirect(route('cate.list'));
+        }else{
+            return 'Error';
+        }
+    }
+
 	/**
-	 * Save category
+	 * remove category
 	 * @author ThienTH
 	 * @return view
 	 * @date 2017-07-21 - create new
 	 */
-    public function save(Request $rq){
+    public function remove($id){
     	Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
 
-        CategoryRepository::Save($rq);
+        $result = CategoryRepository::Destroy($id);
         
-    	Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
-    	return view('admin.cate.form');
+        Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+        
+        if($result){
+            return redirect(route('cate.list'));
+        }else{
+            return 'Error';
+        }
     }
 }

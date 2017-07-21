@@ -21,7 +21,7 @@
 					<td>{{$element->getParentName()}}</td>
 					<td>
 						<a href="" class="btn btn-xs btn-info">Edit</a>
-						<a href="" class="btn btn-xs btn-danger">Remove</a>
+						<a href="{{route('cate.remove', ['id' => $element->id])}}" class="btn btn-xs btn-danger">Remove</a>
 					</td>
 				</tr>
 			@endforeach

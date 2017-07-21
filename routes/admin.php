@@ -19,4 +19,7 @@ Route::get('category/create',
 Route::post('category/save', 
 	'Admin\CategoryController@save')->name('cate.save');
 
+Route::get('category/remove/{id}', 
+	'Admin\CategoryController@remove')->name('cate.remove');
+
  ?>
