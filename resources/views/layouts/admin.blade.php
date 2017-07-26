@@ -354,7 +354,7 @@
           </a>
           <ul class="treeview-menu">
             <li class="active">
-              <a href="#"><i class="fa fa-circle-o"></i> Danh sách danh mục</a>
+              <a href="{{route('cate.list')}}"><i class="fa fa-circle-o"></i> Danh sách danh mục</a>
             </li>
             <li>
               <a href="#"><i class="fa fa-circle-o"></i> Thêm mới danh mục</a>
