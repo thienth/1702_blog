@@ -1,7 +1,18 @@
 @extends('layouts.admin')
 @section('title', 'Category management')
 @section('content')
-	<h1>Category Management</h1>
+	<div class="col-sm-12">
+		<form action="{{route('cate.list')}}" method="get" class="form-inline col-sm-4" >
+			<div class="form-group">
+				<label for="">Search</label>
+				<input type="text" value="{{$keyword}}" class="form-control" name="keyword">
+				<button type="submit" class="btn btn-sm btn-info">
+					<span class="glyphicon glyphicon-search"></span>
+				</button>
+			</div>
+			
+		</form>
+	</div>
 	<table class="table table-hover">
 		<thead>
 			<tr>
@@ -25,6 +36,11 @@
 					</td>
 				</tr>
 			@endforeach
+			<tr>
+				<td colspan="4" class="text-center">
+					{{ $cates->links() }}
+				</td>
+			</tr>
 			
 		</tbody>
 	</table>

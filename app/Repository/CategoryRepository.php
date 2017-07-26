@@ -6,13 +6,23 @@ use Illuminate\Http\Request;
 use DB;
 class CategoryRepository
 {
-	public static function GetAll(){
+	public static function GetAll(Request $request){
 		Log::info('BEGIN ' 
 			. get_class() . ' => ' . __FUNCTION__ . '()');
 
-		Log::info('END ' 
+		if($request->input('keyword') != ""){
+			$keyword = $request->input('keyword');
+
+			$cateList = Category::where('cate_name', 'like', "%$keyword%")->paginate(20)->withPath("?keyword=$keyword");
+
+			Log::info('END ' 
 			. get_class() . ' => ' . __FUNCTION__ . '()');
-		return Category::all();
+			return $cateList;
+		}else{
+			Log::info('END ' 
+			. get_class() . ' => ' . __FUNCTION__ . '()');
+			return Category::paginate(20);
+		}
 	}
 
 	public static function Save(Request $request){
