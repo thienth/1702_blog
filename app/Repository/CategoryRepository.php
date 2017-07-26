@@ -10,10 +10,11 @@ class CategoryRepository
 		Log::info('BEGIN ' 
 			. get_class() . ' => ' . __FUNCTION__ . '()');
 
-		if($request->input('keyword') != ""){
+		if($request->input('keyword') != "" || $request->input('pageSize') != ""){
 			$keyword = $request->input('keyword');
+			$pageSize = $request->input('pageSize');
 
-			$cateList = Category::where('cate_name', 'like', "%$keyword%")->paginate(20)->withPath("?keyword=$keyword");
+			$cateList = Category::where('cate_name', 'like', "%$keyword%")->paginate($pageSize)->withPath("?keyword=$keyword&pageSize=$pageSize");
 
 			Log::info('END ' 
 			. get_class() . ' => ' . __FUNCTION__ . '()');

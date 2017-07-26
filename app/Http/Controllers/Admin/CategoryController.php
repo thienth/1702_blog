@@ -21,9 +21,10 @@ class CategoryController extends Controller
         // Get all category 
         $cates = CategoryRepository::GetAll($request);
         $keyword = $request->input('keyword');
+        $ctlPageSize = $request->input('pageSize');
 
         Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
-        return view('admin.cate.list', compact('cates', 'keyword'));
+        return view('admin.cate.list', compact('cates', 'keyword', 'ctlPageSize'));
     }
 
     /**
