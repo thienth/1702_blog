@@ -3,6 +3,8 @@
 @section('content')
 @php
 	$pageSizes = [20, 40, 60, 100];
+	$sortedArr = get_options($cates);
+	// dd($sortedArr);
 @endphp
 	<div class="col-sm-12">
 		<form action="{{route('cate.list')}}" method="get" class="form-inline col-sm-4" >	
@@ -39,10 +41,10 @@
 			</tr>
 		</thead>
 		<tbody>
-			@foreach ($cates as $element)
+			@foreach ($sortedArr as $element)
 				<tr>
 					<td>{{++$loop->index}}</td>
-					<td>{{$element->cate_name}}</td>
+					<td>{{$element}}</td>
 					<td>{{$element->getParentName()}}</td>
 					<td>
 						<a href="" class="btn btn-xs btn-info">Edit</a>

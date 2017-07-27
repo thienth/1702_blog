@@ -9,8 +9,8 @@ if(!function_exists('get_options')){
           $val = $array[$i];
 
         	if($val->parent_id == $parent && $val->id != $forget) {
-          	$return["x".$val->id] = $indent.$val->name;
-          	$return = array_merge($return, get_options($array, $val->id, $indent."--", $forget));
+          	$return["x".$val->id] = $indent.$val->cate_name;
+          	$return = array_merge($return, get_options($array, $val->id, $indent.$indent, $forget));
           }
       }
 

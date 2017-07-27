@@ -22,7 +22,8 @@ class Category extends Model
     	}
 
     	$parent = self::find($this->parent_id);
-
-    	return $parent->cate_name;
+        if($parent)
+    	   return $parent->cate_name;
+        return null;
     }
 }
