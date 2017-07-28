@@ -38,8 +38,8 @@ class CategoryController extends Controller
 
         // lấy ra model mẫu
         $model = new Category();
-        $listCate = CategoryRepository::GetAll();
-
+        $listCate = Category::all();
+        $listCate = get_options($listCate);
 
         Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
         return view('admin.cate.form', compact('model', 'listCate'));

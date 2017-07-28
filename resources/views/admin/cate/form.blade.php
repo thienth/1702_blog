@@ -12,12 +12,13 @@
 			<div class="form-group">
 				<label for="cate-parent">Parent</label>
 				<select name="parent_id" class="form-control">
-					@foreach ($listCate as $element)
+					@foreach ($listCate as $key => $value)
 						@php
-							$selected = $model->parent_id == $element->id ? "selected" : null;
+							$key = str_replace("x", "", $key);
+							$selected = $model->parent_id == $key ? "selected" : null;
 						@endphp
 
-						<option value="{{$element->id}}" {{$selected}}>{{$element->cate_name}}</option>
+						<option value="{{$key}}" {{$selected}}>{{$value}}</option>
 					@endforeach
 				</select>
 			</div>
