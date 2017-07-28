@@ -23,8 +23,8 @@ class CategoryRepository
 			Log::info('END ' 
 			. get_class() . ' => ' . __FUNCTION__ . '()');
 			$cateList = Category::paginate(20);
-			$cateList = get_options($cateList, 2, "++");
-			dd($cateList);
+			return $cateList;
+			
 		}
 	}
 

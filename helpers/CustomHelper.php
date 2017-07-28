@@ -10,7 +10,7 @@ if(!function_exists('get_options')){
 
         	if($val->parent_id == $parent && $val->id != $forget) {
           	$return["x".$val->id] = $indent.$val->cate_name;
-          	$return = array_merge($return, get_options($array, $val->id, $indent.$indent, $forget));
+          	$return = array_merge($return, get_options($array, $val->id, "--".$indent, $forget));
           }
       }
 
@@ -18,7 +18,18 @@ if(!function_exists('get_options')){
   }
 }
 
-
+if(!function_exists('get_in_array')){
+  function get_in_array($id, $arr, $indent = ""){
+    $result = null;
+    for ($i=0; $i < count($arr); $i++) { 
+      if($id == $indent.$arr[$i]->id){
+        $result = $arr[$i];
+        break;
+      }
+    }
+    return $result;
+  }
+}
 
 
  ?>
