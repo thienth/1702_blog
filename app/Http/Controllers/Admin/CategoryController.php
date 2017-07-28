@@ -53,7 +53,11 @@ class CategoryController extends Controller
      */
     public function save(Request $rq){
         Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
-
+        $this->validate($rq, [
+            'cate_name' => 'required'
+        ], [
+            'cate_name.required' => 'Vui lòng nhập dữ liệu cho tên danh mục'
+        ]);
         $result = CategoryRepository::Save($rq);
         
         Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");

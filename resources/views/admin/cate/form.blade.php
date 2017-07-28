@@ -8,10 +8,14 @@
 			<div class="form-group">
 				<label for="cate-name">Category name</label>
 				<input id="cate-name" type="text" value="{{$model->cate_name}}" name="cate_name" class="form-control" placeholder="Category name">
+				@if (count($errors) > 0)
+					<span class="text-danger">{{$errors->first('cate_name')}}</span>
+				@endif
 			</div>
 			<div class="form-group">
 				<label for="cate-parent">Parent</label>
 				<select name="parent_id" class="form-control">
+					<option value="0">--------------</option>
 					@foreach ($listCate as $key => $value)
 						@php
 							$key = str_replace("x", "", $key);
