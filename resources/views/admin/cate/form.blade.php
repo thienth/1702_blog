@@ -7,7 +7,7 @@
 			<input type="hidden" name="id" value="{{$model->id}}">
 			<div class="form-group">
 				<label for="cate-name">Category name</label>
-				<input id="cate-name" type="text" value="{{$model->cate_name}}" name="cate_name" class="form-control" placeholder="Category name">
+				<input id="cate-name" type="text" value="{{old('cate_name')}}" name="cate_name" class="form-control" placeholder="Category name">
 				@if (count($errors) > 0)
 					<span class="text-danger">{{$errors->first('cate_name')}}</span>
 				@endif

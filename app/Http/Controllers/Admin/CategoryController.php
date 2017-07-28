@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Log;
+use Validator;
 use App\Repository\CategoryRepository;
 use App\Models\Category;
+use App\Http\Requests\SaveCategoryRequest;
 class CategoryController extends Controller
 {
     /**
@@ -51,13 +53,29 @@ class CategoryController extends Controller
      * @return view
      * @date 2017-07-21 - create new
      */
-    public function save(Request $rq){
+    public function save(SaveCategoryRequest $rq){
         Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
-        $this->validate($rq, [
-            'cate_name' => 'required'
-        ], [
-            'cate_name.required' => 'Vui lòng nhập dữ liệu cho tên danh mục'
+        // $this->validate($rq, [
+        //     'cate_name' => 'required'
+        // ], [
+        //     'cate_name.required' => 'Vui lòng nhập dữ liệu cho tên danh mục'
+        // ]);
+        // 
+        
+        /*$validator = Validator::make($rq->all(), 
+            [
+                'cate_name' => 'required|min:5'
+            ], 
+            [
+            'cate_name.required' => 'Vui lòng nhập dữ liệu cho tên danh mục',
+            'cate_name.min' => 'Vui lòng nhập nhiều hơn 5 ký tự'
         ]);
+
+        if ($validator->fails()) {
+            return back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }*/
         $result = CategoryRepository::Save($rq);
         
         Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
