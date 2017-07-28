@@ -4,7 +4,7 @@ if(!function_exists('get_options')){
   function get_options($array, $parent=0, $indent="", $forget = null) {
       
       // Return variable
-      $return = array();
+      $return = [];
       for ($i=0; $i < count($array); $i++) {
           $val = $array[$i];
 

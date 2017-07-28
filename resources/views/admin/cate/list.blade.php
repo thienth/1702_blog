@@ -3,11 +3,11 @@
 @section('content')
 @php
 	$pageSizes = [20, 40, 60, 100];
-	$sortedArr = get_options($cates, 0, "");
+	// $sortedArr = get_options($cates, 0, "");
 	
 @endphp
 	<div class="col-sm-12">
-		<form action="{{route('cate.list')}}" method="get" class="form-inline col-sm-4" >	
+		<form action="{{route('cate.list')}}" method="get" class="form-inline col-sm-10" >	
 			<div class="form-group">
 				<label for="">Page size</label>
 				<select name="pageSize">
@@ -19,6 +19,7 @@
 					@endforeach
 				</select>
 			</div>
+			&nbsp;
 			<div class="form-group">
 				<label for="">Search</label>
 				<input type="text" value="{{$keyword}}" class="form-control" name="keyword">
@@ -42,10 +43,10 @@
 		</thead>
 		<tbody>
 			
-			@foreach ($sortedArr as $key => $value)
+			@foreach ($cates as $element)
 				@php
-					$element = get_in_array($key, $cates, "x");
-					$element->cate_name = $value;
+					// $element = get_in_array($key, $cates, "x");
+					// $element->cate_name = $value;
 				@endphp
 				<tr>
 					<td>{{++$loop->index}}</td>
