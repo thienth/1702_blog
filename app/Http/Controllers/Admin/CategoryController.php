@@ -48,6 +48,24 @@ class CategoryController extends Controller
     }
 
     /**
+     * Form cập nhật danh mục
+     * @author ThienTH
+     * @return view
+     * @date 2017-07-28 - create new
+     */
+    public function update($id){
+        Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
+
+        // lấy ra model mẫu
+        $model = Category::find($id);
+        $listCate = Category::all();
+        $listCate = get_options($listCate);
+
+        Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+        return view('admin.cate.form', compact('model', 'listCate'));
+    }
+
+    /**
      * Save category
      * @author ThienTH
      * @return view

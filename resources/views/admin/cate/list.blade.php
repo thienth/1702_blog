@@ -53,7 +53,7 @@
 					<td>{{$element->cate_name}}</td>
 					<td>{{$element->getParentName()}}</td>
 					<td>
-						<a href="" class="btn btn-xs btn-info">Edit</a>
+						<a href="{{route('cate.update', ['id' => $element->id])}}" class="btn btn-xs btn-info">Edit</a>
 						<a href="{{route('cate.remove', ['id' => $element->id])}}" class="btn btn-xs btn-danger">Remove</a>
 					</td>
 				</tr>
