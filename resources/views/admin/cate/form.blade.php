@@ -2,6 +2,7 @@
 @section('title', 'Category management')
 @section('content')
 	hello thienth
+	minh thich thi minh viet
 	<div class="col-sm-6 col-sm-offset-3">
 		<form action="{{route('cate.save')}}" method="post" novalidate>
 			{{csrf_field()}}
