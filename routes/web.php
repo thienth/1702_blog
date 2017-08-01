@@ -14,10 +14,19 @@ Route::get('/', function (){
 	return 'homepage';
 })->name('homepage');
 
+Route::get('/logout', function(){
+	Auth::logout();
+	return redirect(route('login'));
+})->name('logout');
+
 Route::get('/login', function(){
 	return view('admin.auth.login');
 })->name('login');
 Route::post('/login', 'Auth\LoginController@login');
+
+// Route::get('generate-pwd/{pwd}', function ($pwd){
+// 	return Hash::make($pwd);
+// });
 
 
 

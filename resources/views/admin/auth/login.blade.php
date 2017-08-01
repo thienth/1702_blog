@@ -41,7 +41,7 @@
                 {{ session('msg') }}
             </span>
         @endif
-        <input type="email" name="email" class="form-control" placeholder="Email">
+        <input type="email" name="email" class="form-control" placeholder="Email" autocomplete="off">
         @if(asset($errors->first('email')))
           <span class="text-danger">{{$errors->first('email')}}</span>
         @endif
