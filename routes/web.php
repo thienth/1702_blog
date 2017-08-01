@@ -20,6 +20,9 @@ Route::get('/logout', function(){
 })->name('logout');
 
 Route::get('/login', function(){
+	if(Auth::viaRemember()){
+		return redirect("/admin");
+	}
 	return view('admin.auth.login');
 })->name('login');
 Route::post('/login', 'Auth\LoginController@login');

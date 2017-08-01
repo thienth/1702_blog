@@ -39,8 +39,9 @@ class LoginController extends Controller
     }
 
     public function login(LoginRequest $rq){
+        $remember = $rq->remember == 1 ? true : false;
         if (Auth::attempt(['email' => $rq->email, 
-                                'password' => $rq->password])) {
+                                'password' => $rq->password], $remember)) {
             // Authentication passed...
             return redirect()->intended('admin');
         }

@@ -1,4 +1,10 @@
 <?php 
+define('ROLE_MODERATOR', 500);
+define('ROLE_ADMIN', 900);
+define('ROLE_UPLOADER', 100);
+
+
+
 if(!function_exists('get_options')){
 
   function get_options($array, $parent=0, $indent="", $forget = null) {
