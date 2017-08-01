@@ -2,6 +2,8 @@
 /**
  * Dashboard
  */
+
+
 Route::get('/', function(){
 	dd(recursive_category("Nguyễn Ngọc Châm đẹp trai")); 
 	return view('admin.dashboard');

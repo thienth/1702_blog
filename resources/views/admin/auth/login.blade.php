@@ -27,13 +27,13 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="{{route('homepage')}}"><b>T3h 1610e</b>Login</a>
+    <a href="{{route('homepage')}}"><b>T3h 1702e</b>Login</a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
     <p class="login-box-msg">Sign in to start your session</p>
 
-    <form action="{{route('login.post')}}" method="post" novalidate>
+    <form action="{{route('login')}}" method="post" novalidate>
     {{csrf_field()}}
       <div class="form-group has-feedback">
         @if(session('msg'))
