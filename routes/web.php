@@ -14,6 +14,10 @@ Route::get('/', function (){
 	return 'homepage';
 })->name('homepage');
 
+Route::get('/403-forbidden', function(){
+	return view('forbidden');
+})->name('403.error');
+
 Route::get('/logout', function(){
 	Auth::logout();
 	return redirect(route('login'));

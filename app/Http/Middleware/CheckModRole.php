@@ -17,7 +17,7 @@ class CheckModRole
     {
 
         if(!Auth::user()->checkMod()){
-            echo '403 Forbidden!';die;
+            return redirect(route('403.error'));
         }
         return $next($request);
     }
