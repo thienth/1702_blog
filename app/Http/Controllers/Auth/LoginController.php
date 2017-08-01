@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Http\Requests\LoginRequest;
+use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
     /*
@@ -25,7 +26,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/admin';
 
     /**
      * Create a new controller instance.
@@ -38,9 +39,12 @@ class LoginController extends Controller
     }
 
     public function login(LoginRequest $rq){
-        if (Auth::attempt(['email' => $email, 'password' => $password])) {
+        if (Auth::attempt(['email' => $rq->email, 
+                                'password' => $rq->password])) {
             // Authentication passed...
-            return redirect()->intended('dashboard');
+            return redirect()->intended('admin');
         }
+
+        return redirect(route('login'))->with('msg', 'invalid email/password');
     }
 }
