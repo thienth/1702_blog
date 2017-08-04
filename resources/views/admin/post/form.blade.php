@@ -56,3 +56,9 @@
 	</div>
 
 @endsection
+@section('js')
+  <script>
+    ckeditor('short_desc');
+    ckeditor('content');
+</script>
+@endsection
