@@ -8,6 +8,8 @@ class Post extends Model
 {
     protected $table = 'posts';
 
+    public $fillable = ['title', 'cate_id', 'short_desc', 'content', 'author'];
+
     public function category()
 	{
 	    return $this->belongsTo('App\Models\Category', 'cate_id');

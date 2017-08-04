@@ -2,7 +2,7 @@
 @section('title', 'Category management')
 @section('content')
 	<div class="col-sm-12">
-		<form action="{{route('cate.save')}}" method="post" novalidate>
+		<form action="{{route('post.save')}}" method="post" novalidate>
 			{{csrf_field()}}
 			<input type="hidden" name="id" value="{{$model->id}}">
 			<div class="form-group">
@@ -34,18 +34,27 @@
 			<div class="form-group">
 				<label for="author">Author</label>
 				<input type="text" name="author" value="{{$model->author}}" class="form-control">
+				@if (count($errors) > 0)
+					<span class="text-danger">{{$errors->first('author')}}</span>
+				@endif
 			</div>
 			<div class="form-group">
 				<label for="short_desc">Short Description</label>
 				<textarea name="short_desc" class="form-control" id="short_desc" >
 					{{$model->short_desc}}
 				</textarea>
+				@if (count($errors) > 0)
+					<span class="text-danger">{{$errors->first('short_desc')}}</span>
+				@endif
 			</div>
 			<div class="form-group">
 				<label for="content">Content</label>
 				<textarea name="content" class="form-control" id="content" >
 					{{$model->content}}
 				</textarea>
+				@if (count($errors) > 0)
+					<span class="text-danger">{{$errors->first('content')}}</span>
+				@endif
 			</div>
 			<div class="text-center">
 				<button type="submit" class="btn btn-success">Submit</button>

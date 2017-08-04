@@ -37,6 +37,10 @@ Route::group(['middleware' => 'auth'], function(){
 
 		Route::get('post/create', 
 			'Admin\PostController@create')->name('post.create');
+		
+		Route::post('post/save', 
+			'Admin\PostController@save')->name('post.save');
+
 	});
 	
 });

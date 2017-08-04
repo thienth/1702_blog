@@ -5,6 +5,8 @@ use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use DB;
+use Illuminate\Support\Facades\Auth;
+
 class PostRepository
 {
 	public static function GetAll(Request $request){
@@ -27,6 +29,39 @@ class PostRepository
 			return $postList;
 			
 		}
+	}
+
+	public static function Save(Request $request){
+		Log::info('BEGIN ' 
+			. get_class() . ' => ' . __FUNCTION__ . '()');
+		// begin transaction
+		DB::beginTransaction();
+		// try
+		try{
+			if($request->id == null){
+				$model = new Post();
+	        	$model->created_by = Auth::user()->id;
+			}else{
+				$model = Post::find($request->id);
+			}
+
+	        $model->fill($request->all());
+	        // $model->updated_by = Auth::user()->id;
+	        $model->save();
+	        DB::commit();
+	        // neu k co loi thi tien hanh return true
+	        Log::info('END ' 
+			. get_class() . ' => ' . __FUNCTION__ . '()');
+	        return true;
+
+	    // catch     
+		}catch(\Exception $ex){
+			// neu xay ra loi thi return false
+			Log::error('END ' 
+			. get_class() . ' => ' . __FUNCTION__ . '() - ' . $ex->getMessage());
+			DB::rollback();
+			return false;
+		}	
 	}
 
 	public static function Destroy($id){
