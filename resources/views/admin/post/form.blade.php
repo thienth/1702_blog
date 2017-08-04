@@ -27,6 +27,26 @@
 					@endforeach
 				</select>
 			</div>
+			<div class="form-group">
+				<label for="image">Image</label>
+				<input type="file" name="image" class="form-control">
+			</div>
+			<div class="form-group">
+				<label for="author">Author</label>
+				<input type="text" name="author" value="{{$model->author}}" class="form-control">
+			</div>
+			<div class="form-group">
+				<label for="short_desc">Short Description</label>
+				<textarea name="short_desc" class="form-control" id="short_desc" >
+					{{$model->short_desc}}
+				</textarea>
+			</div>
+			<div class="form-group">
+				<label for="content">Content</label>
+				<textarea name="content" class="form-control" id="content" >
+					{{$model->content}}
+				</textarea>
+			</div>
 			<div class="text-center">
 				<button type="submit" class="btn btn-success">Submit</button>
 				<a href="{{route('cate.list')}}" class="btn btn-warning">Cancel</a>
