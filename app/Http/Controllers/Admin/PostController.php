@@ -19,4 +19,18 @@ class PostController extends Controller
         Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
         return view('admin.post.list', compact('posts', 'keyword', 'ctlPageSize'));
     }
+
+    public function remove($id){
+    	Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
+
+        $result = PostRepository::Destroy($id);
+        
+        Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+        
+        if($result){
+            return redirect(route('post.list'));
+        }else{
+            return 'Error';
+        }
+    }
 }
