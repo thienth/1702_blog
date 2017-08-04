@@ -28,6 +28,10 @@ Route::group(['middleware' => 'auth'], function(){
 
 		Route::get('category/remove/{id}', 
 			'Admin\CategoryController@remove')->name('cate.remove');
+
+		Route::get('post', 
+			'Admin\PostController@index')->name('post.list');
+
 	});
 	
 });
