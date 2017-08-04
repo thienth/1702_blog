@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use Log;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Repository\PostRepository;
 
 class PostController extends Controller
 {
@@ -11,11 +12,11 @@ class PostController extends Controller
         Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
 
         // Get all category 
-        $posts = CategoryRepository::GetAll($request);
+        $posts = PostRepository::GetAll($request);
         $keyword = $request->input('keyword');
         $ctlPageSize = $request->input('pageSize');
 
         Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
-        return view('admin.cate.list', compact('cates', 'keyword', 'ctlPageSize'));
+        return view('admin.post.list', compact('posts', 'keyword', 'ctlPageSize'));
     }
 }
