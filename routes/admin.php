@@ -34,6 +34,9 @@ Route::group(['middleware' => 'auth'], function(){
 
 		Route::get('post/remove/{id}', 
 			'Admin\PostController@remove')->name('post.remove');
+
+		Route::get('post/create', 
+			'Admin\PostController@create')->name('post.create');
 	});
 	
 });

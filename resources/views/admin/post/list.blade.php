@@ -7,7 +7,7 @@
 	
 @endphp
 	<div class="col-sm-12">
-		<form action="{{route('cate.list')}}" method="get" class="form-inline col-sm-10" >	
+		<form action="{{route('post.list')}}" method="get" class="form-inline col-sm-10" >	
 			<div class="form-group">
 				<label for="">Page size</label>
 				<select name="pageSize">
@@ -38,7 +38,7 @@
 				<th>Title</th>
 				<th>Category name</th>
 				<th> 
-					<a href="{{route('cate.create')}}" class="btn btn-xs btn-success">Create</a>
+					<a href="{{route('post.create')}}" class="btn btn-xs btn-success">Create</a>
 				</th>
 			</tr>
 		</thead>

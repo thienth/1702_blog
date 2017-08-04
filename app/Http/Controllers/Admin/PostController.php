@@ -20,6 +20,18 @@ class PostController extends Controller
         return view('admin.post.list', compact('posts', 'keyword', 'ctlPageSize'));
     }
 
+    public function create(){
+        Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
+
+        // lấy ra model mẫu
+        $model = new Post();
+        $listCate = Category::all();
+        $listCate = get_options($listCate);
+
+        Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+        return view('admin.post.form', compact('model', 'listCate'));
+    }
+
     public function remove($id){
     	Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
 
