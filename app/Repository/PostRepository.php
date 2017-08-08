@@ -34,6 +34,7 @@ class PostRepository
 	public static function Save(Request $request){
 		Log::info('BEGIN ' 
 			. get_class() . ' => ' . __FUNCTION__ . '()');
+
 		// begin transaction
 		DB::beginTransaction();
 		// try
@@ -46,6 +47,13 @@ class PostRepository
 			}
 
 	        $model->fill($request->all());
+	        // upload image
+			if($request->hasFile('upload_image')){
+				$fileName = uniqid() . "." . $request->upload_image->extension();
+				$request->upload_image->storeAs('uploads', $fileName);
+				$model->image = 'uploads/'.$fileName;
+			}
+			// dd($model);
 	        // $model->updated_by = Auth::user()->id;
 	        $model->save();
 	        DB::commit();

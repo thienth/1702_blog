@@ -47,7 +47,12 @@
 				<tr>
 					<td>{{++$loop->index}}</td>
 					<td>
+					@if ($element->image == 'http://lorempixel.com/400/200/')
 						<img src="{{$element->image}}" alt="">
+					@else
+						<img src="{{asset($element->image)}}" alt="">
+					@endif
+						
 					</td>
 					<td>{{$element->title}}</td>
 					<td>{{$element->category->cate_name}}</td>

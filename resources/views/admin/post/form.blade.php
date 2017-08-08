@@ -2,7 +2,7 @@
 @section('title', 'Category management')
 @section('content')
 	<div class="col-sm-12">
-		<form action="{{route('post.save')}}" method="post" novalidate>
+		<form action="{{route('post.save')}}" method="post" novalidate enctype="multipart/form-data">
 			{{csrf_field()}}
 			<input type="hidden" name="id" value="{{$model->id}}">
 			<div class="form-group">
@@ -29,7 +29,7 @@
 			</div>
 			<div class="form-group">
 				<label for="image">Image</label>
-				<input type="file" name="image" class="form-control">
+				<input type="file" name="upload_image" class="form-control">
 			</div>
 			<div class="form-group">
 				<label for="author">Author</label>

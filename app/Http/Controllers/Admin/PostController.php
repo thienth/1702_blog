@@ -36,7 +36,6 @@ class PostController extends Controller
 
     public function save(SavePostRequest $rq){
         Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
-        
         $result = PostRepository::Save($rq);
         
         Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");

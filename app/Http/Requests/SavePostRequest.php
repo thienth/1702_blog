@@ -27,7 +27,8 @@ class SavePostRequest extends FormRequest
             'title' => 'required',
             'author' => 'required',
             'short_desc' => 'required',
-            'content' => 'required'
+            'content' => 'required',
+            'upload_image' => 'file'
         ];
     }
 }
