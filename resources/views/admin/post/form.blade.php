@@ -4,7 +4,7 @@
 	<div class="col-sm-12">
 		<form action="{{route('post.save')}}" method="post" novalidate enctype="multipart/form-data">
 			{{csrf_field()}}
-			<input type="hidden" name="id" value="{{$model->id}}">
+			<input type="hidden" name="id" value="{{old('id', $model->id)}}">
 			<div class="form-group">
 				<label for="title">Title</label>
 				<input id="title" type="text" 
@@ -33,7 +33,7 @@
 			</div>
 			<div class="form-group">
 				<label for="author">Author</label>
-				<input type="text" name="author" value="{{$model->author}}" class="form-control">
+				<input type="text" name="author" value="{{old('author', $model->author)}}" class="form-control">
 				@if (count($errors) > 0)
 					<span class="text-danger">{{$errors->first('author')}}</span>
 				@endif
@@ -41,7 +41,7 @@
 			<div class="form-group">
 				<label for="short_desc">Short Description</label>
 				<textarea name="short_desc" class="form-control" id="short_desc" >
-					{{$model->short_desc}}
+					{{old('short_desc', $model->short_desc)}}
 				</textarea>
 				@if (count($errors) > 0)
 					<span class="text-danger">{{$errors->first('short_desc')}}</span>
@@ -50,7 +50,7 @@
 			<div class="form-group">
 				<label for="content">Content</label>
 				<textarea name="content" class="form-control" id="content" >
-					{{$model->content}}
+					{{old('content', $model->content)}}
 				</textarea>
 				@if (count($errors) > 0)
 					<span class="text-danger">{{$errors->first('content')}}</span>
