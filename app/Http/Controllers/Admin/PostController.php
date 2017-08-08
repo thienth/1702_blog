@@ -34,6 +34,18 @@ class PostController extends Controller
         return view('admin.post.form', compact('model', 'listCate'));
     }
 
+    public function update($id){
+        Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
+
+        // lấy ra model mẫu
+        $model = Post::find($id);
+        $listCate = Category::all();
+        $listCate = get_options($listCate);
+
+        Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+        return view('admin.post.form', compact('model', 'listCate'));
+    }
+
     public function save(SavePostRequest $rq){
         Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
         $result = PostRepository::Save($rq);

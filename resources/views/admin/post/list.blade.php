@@ -57,7 +57,7 @@
 					<td>{{$element->title}}</td>
 					<td>{{$element->category->cate_name}}</td>
 					<td>
-						<a href="{{route('cate.update', ['id' => $element->id])}}" class="btn btn-xs btn-info">Edit</a>
+						<a href="{{route('post.update', ['id' => $element->id])}}" class="btn btn-xs btn-info">Edit</a>
 						<a href="{{route('post.remove', ['id' => $element->id])}}" class="btn btn-xs btn-danger">Remove</a>
 					</td>
 				</tr>

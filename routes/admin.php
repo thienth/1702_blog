@@ -41,6 +41,9 @@ Route::group(['middleware' => 'auth'], function(){
 		Route::post('post/save', 
 			'Admin\PostController@save')->name('post.save');
 
+		Route::get('post/edit/{id}', 
+			'Admin\PostController@update')->name('post.update');
+
 	});
 	
 });
