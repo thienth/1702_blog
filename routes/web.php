@@ -35,6 +35,6 @@ Route::post('/login', 'Auth\LoginController@login');
 // 	return Hash::make($pwd);
 // });
 
-
+//askdjfhasdjfsdakfjhsadlfkjhsadfklash
 
 
