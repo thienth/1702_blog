@@ -11,6 +11,8 @@ Route::group(['middleware' => 'auth'], function(){
 		return view('admin.dashboard', compact('cateCount', 'postCount'));
 	})->name('admin');
 
+	Route::get('/change-password', 'Admin\ProfileController@changePwdForm')->name('password.change');
+
 	/**
 	 * Profile
 	 */

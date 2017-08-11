@@ -40,4 +40,11 @@ class ProfileController extends Controller
         Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
     	return redirect(route('admin'));
     }
+
+    public function changePwdForm(){
+        Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
+
+        Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+        return view('admin.profile.change-pwd');
+    }
 }
