@@ -30,6 +30,12 @@ class ProfileController extends Controller
     	$model = UserInfo::where('id', Auth::user()->id)->first();
     	$model->fill($rq->all());
     	$model->save();
+    	if($rq->hasFile('avatar')){
+			$fileName = uniqid() . "." . $rq->avatar->extension();
+			$rq->avatar->storeAs('uploads', $fileName);
+			Auth::user()->avatar = 'uploads/'.$fileName;
+			Auth::user()->save();
+		}
 
         Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
     	return redirect(route('admin'));

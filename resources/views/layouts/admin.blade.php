@@ -1,4 +1,4 @@
-x<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -80,7 +80,7 @@ x<!DOCTYPE html>
                   <li><!-- start message -->
                     <a href="#">
                       <div class="pull-left">
-                        <img src="{{asset('admin-assets/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
+                        <img src="{{asset(\Auth::user()->avatar)}}" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Support Team
@@ -262,16 +262,16 @@ x<!DOCTYPE html>
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="{{asset('admin-assets/img/user2-160x160.jpg')}}" class="user-image" alt="User Image">
-              <span class="hidden-xs">Alexander Pierce</span>
+              <img src="{{asset(\Auth::user()->avatar)}}" class="user-image" alt="User Image">
+              <span class="hidden-xs">{{\Auth::user()->name}}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="{{asset('admin-assets/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
+                <img src="{{asset(\Auth::user()->avatar)}}" class="img-circle" alt="User Image">
 
                 <p>
-                  Alexander Pierce - Web Developer
+                  {{\Auth::user()->name}} - Web Developer
                   <small>Member since Nov. 2012</small>
                 </p>
               </li>
@@ -316,10 +316,10 @@ x<!DOCTYPE html>
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="{{asset('admin-assets/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
+          <img src="{{asset(\Auth::user()->avatar)}}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p>{{\Auth::user()->name}}</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
