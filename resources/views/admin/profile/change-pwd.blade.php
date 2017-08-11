@@ -11,6 +11,9 @@
 				@if (count($errors) > 0)
 					<span class="text-danger">{{$errors->first('old_password')}}</span>
 				@endif
+				@if (Session::has('errMsg'))
+				    <span class="text-danger">{{session('errMsg')}}</span>
+				@endisset
 			</div>
 			<div class="form-group">
 				<label for="newPass">New Password</label>

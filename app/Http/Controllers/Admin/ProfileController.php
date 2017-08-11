@@ -9,6 +9,7 @@ use App\Models\UserInfo;
 use Log;
 use App\Http\Requests\SaveProfileRequest;
 use App\Http\Requests\SaveChangePasswordRequest;
+use Hash;
 class ProfileController extends Controller
 {
     public function update(){
@@ -51,8 +52,15 @@ class ProfileController extends Controller
 
     public function saveChangePwd(SaveChangePasswordRequest $rq){
         Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
-        dd(1);
+        if(Hash::check($rq->old_password, 
+                Auth::user()->password)){
+            $newPass = Hash::make($rq->new_password);
+            Auth::user()->password = $newPass;
+            Auth::logout();
+            Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+            return redirect(route('login'));
+        }
         Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
-        return view('admin.profile.change-pwd');
+        return redirect(route('password.change'))->with('errMsg', 'Invalid old password!');
     }
 }
