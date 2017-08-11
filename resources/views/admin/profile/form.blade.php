@@ -17,8 +17,8 @@
 				<input type="file" name="avatar" id="avatar" class="form-control">
 			</div>
 			<div class="form-group">
-				<label for="bithDate">Birth date</label>
-				<input type="date" id="bithDate" name="bith_date" value="{{old('bith_date', $userInfo->bith_date)}}" class="form-control">
+				<label for="birthDate">Birth date</label>
+				<input type="text" id="birthDate" name="bith_date" value="{{old('bith_date', $userInfo->bith_date)}}" class="form-control">
 				@if (count($errors) > 0)
 					<span class="text-danger">{{$errors->first('bith_date')}}</span>
 				@endif
@@ -47,8 +47,7 @@
 
 @endsection
 @section('js')
-  <script>
-    ckeditor('short_desc');
-    ckeditor('content');
-</script>
+	<script>
+    	$('#birthDate').datepicker({autoclose: true});
+	</script>
 @endsection
