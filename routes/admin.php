@@ -11,6 +11,11 @@ Route::group(['middleware' => 'auth'], function(){
 	});
 
 	/**
+	 * Profile
+	 */
+	Route::get('/profile', 'Admin\ProfileController@update')->name('profile.form');
+
+	/**
 	 * Category management
 	 */
 	Route::group(['middleware' => 'check-mod'], function(){
