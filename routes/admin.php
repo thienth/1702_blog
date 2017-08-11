@@ -3,11 +3,12 @@
  * Dashboard
  */
 
-
 Route::group(['middleware' => 'auth'], function(){
 	
 	Route::get('/', function(){
-		return view('admin.dashboard');
+		$cateCount = App\Models\Category::count();
+		$postCount = App\Models\Post::count();
+		return view('admin.dashboard', compact('cateCount', 'postCount'));
 	})->name('admin');
 
 	/**
