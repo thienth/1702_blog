@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\UserInfo;
 use Log;
 use App\Http\Requests\SaveProfileRequest;
+use App\Http\Requests\SaveChangePasswordRequest;
 class ProfileController extends Controller
 {
     public function update(){
