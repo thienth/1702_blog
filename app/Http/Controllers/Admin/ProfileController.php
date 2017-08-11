@@ -15,6 +15,11 @@ class ProfileController extends Controller
 
     	$user = Auth::user();
     	$userInfo = UserInfo::where('id', $user->id)->first();
+    	if($userInfo == null){
+    		$userInfo = new UserInfo();
+    		$userInfo->id = $user->id;
+    		$userInfo->save();
+    	}
 
         Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
     	return view('admin.profile.form', compact('user', 'userInfo'));
