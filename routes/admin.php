@@ -8,12 +8,13 @@ Route::group(['middleware' => 'auth'], function(){
 	
 	Route::get('/', function(){
 		return view('admin.dashboard');
-	});
+	})->name('admin');
 
 	/**
 	 * Profile
 	 */
 	Route::get('/profile', 'Admin\ProfileController@update')->name('profile.form');
+	Route::post('/profile', 'Admin\ProfileController@save');
 
 	/**
 	 * Category management

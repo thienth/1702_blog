@@ -2,7 +2,7 @@
 @section('title', 'User profile')
 @section('content')
 	<div class="col-sm-12">
-		<form action="{{route('post.save')}}" method="post" novalidate enctype="multipart/form-data">
+		<form method="post" novalidate enctype="multipart/form-data">
 			{{csrf_field()}}
 			<div class="form-group">
 				<label for="fullname">Full name</label>
@@ -15,10 +15,13 @@
 			<div class="form-group">
 				<label for="avatar">Avatar</label>
 				<input type="file" name="avatar" id="avatar" class="form-control">
+				@if (count($errors) > 0)
+					<span class="text-danger">{{$errors->first('avatar')}}</span>
+				@endif
 			</div>
 			<div class="form-group">
 				<label for="birthDate">Birth date</label>
-				<input type="text" id="birthDate" name="bith_date" value="{{old('bith_date', $userInfo->bith_date)}}" class="form-control">
+				<input type="text" id="birthDate" name="bith_date" value="{{old('birth_date', $userInfo->birth_date)}}" class="form-control">
 				@if (count($errors) > 0)
 					<span class="text-danger">{{$errors->first('bith_date')}}</span>
 				@endif
@@ -48,6 +51,9 @@
 @endsection
 @section('js')
 	<script>
-    	$('#birthDate').datepicker({autoclose: true});
+    	$('#birthDate').datepicker({
+    		autoclose: true,
+    		format: 'yyyy-mm-dd'
+		});
 	</script>
 @endsection
