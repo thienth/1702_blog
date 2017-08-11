@@ -12,6 +12,8 @@ Route::group(['middleware' => 'auth'], function(){
 	})->name('admin');
 
 	Route::get('/change-password', 'Admin\ProfileController@changePwdForm')->name('password.change');
+	
+	Route::post('/change-password', 'Admin\ProfileController@saveChangePwd');
 
 	/**
 	 * Profile

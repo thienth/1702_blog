@@ -47,4 +47,11 @@ class ProfileController extends Controller
         Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
         return view('admin.profile.change-pwd');
     }
+
+    public function saveChangePwd(SaveChangePasswordRequest $rq){
+        Log::info("BEGIN " . get_class() . " => " . __FUNCTION__ ."()");
+        dd(1);
+        Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
+        return view('admin.profile.change-pwd');
+    }
 }
