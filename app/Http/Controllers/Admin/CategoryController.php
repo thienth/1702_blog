@@ -9,6 +9,7 @@ use Validator;
 use App\Repository\CategoryRepository;
 use App\Models\Category;
 use App\Http\Requests\SaveCategoryRequest;
+use App\Models\Slug;
 class CategoryController extends Controller
 {
     /**
@@ -40,11 +41,16 @@ class CategoryController extends Controller
 
         // lấy ra model mẫu
         $model = new Category();
+
+        $modelSlug = new Slug();
+        $modelSlug->entity_type = $model->entityType;
+        $modelSlug->entity_id = $model->id;
+        
         $listCate = Category::all();
         $listCate = get_options($listCate);
 
         Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
-        return view('admin.cate.form', compact('model', 'listCate'));
+        return view('admin.cate.form', compact('model', 'listCate', 'modelSlug'));
     }
 
     /**
@@ -58,6 +64,11 @@ class CategoryController extends Controller
 
         // lấy ra model mẫu
         $model = Category::find($id);
+        $modelSlug = Slug::where([
+                        'entity_type'=> $model->entityType,
+                        'entity_id'=> $model->id
+                                ])->first();
+        
         $listCate = Category::all();
         $listCate = get_options($listCate);
 

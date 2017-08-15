@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     protected $table = 'categories';
+    public $entityType = ENTITY_TYPE_CATEGORY;
 
     public $fillable = ['cate_name', 'parent_id'];
 

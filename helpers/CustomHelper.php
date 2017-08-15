@@ -2,6 +2,11 @@
 define('ROLE_MODERATOR', 500);
 define('ROLE_ADMIN', 900);
 define('ROLE_UPLOADER', 100);
+/**
+ * Slug Constant
+ */
+define('ENTITY_TYPE_CATEGORY', 100);
+define('ENTITY_TYPE_POST', 500);
 
 
 
