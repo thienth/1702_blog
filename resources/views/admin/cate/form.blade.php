@@ -48,10 +48,21 @@
 @section('js')
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$('#cate-name').on('keydown', function(){
-				$title = $(this).val();
+			$('#cate-name').on('keyup change', function(){
+				title = $(this).val();
+				if(title == ""){
+					$('#cate-url').val('');
+					return false;
+				}
 				$.ajax({
-					url: 
+					url: "{{ route('slug.generate') }}", 
+					type: 'GET',
+					data: {title: title},
+					dataType: 'JSON',
+					success: function(rp){
+						console.log(rp);
+						$('#cate-url').val(rp.data);
+					}
 				});
 			})
 		});

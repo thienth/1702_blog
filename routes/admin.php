@@ -1,4 +1,5 @@
 <?php 
+use Illuminate\Http\Request;
 /**
  * Dashboard
  */
@@ -6,8 +7,8 @@ Route::get('/check-url/{entityType}/{entityId}/{slug}', function($entityType, $e
 	$result = \App\Models\Slug::checkSlugExisted($entityType, $entityId, $slug);
 	return response()->json($result);
 });
-Route::get('/generate-slug/{title}', function($title){
-	$slug = str_slug(trim($title), '-');
+Route::get('/generate-slug', function(Request $request){
+	$slug = str_slug(trim($request->title), '-');
 	$slug .= "-" . date('YmdHis', time());
 	return response()->json(['data' => $slug]);
 })->name('slug.generate');
