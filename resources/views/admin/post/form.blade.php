@@ -5,9 +5,18 @@
 		<form action="{{route('post.save')}}" method="post" novalidate enctype="multipart/form-data">
 			{{csrf_field()}}
 			<input type="hidden" name="id" value="{{old('id', $model->id)}}">
+
 			<div class="form-group">
 				<label for="title">Title</label>
 				<input id="title" type="text" 
+					value="{{old('title', $model->title)}}" name="title" class="form-control" placeholder="Post title">
+				@if (count($errors) > 0)
+					<span class="text-danger">{{$errors->first('title')}}</span>
+				@endif
+			</div>
+			<div class="form-group">
+				<label for="slug">Url</label>
+				<input id="slug" type="text" 
 					value="{{old('title', $model->title)}}" name="title" class="form-control" placeholder="Post title">
 				@if (count($errors) > 0)
 					<span class="text-danger">{{$errors->first('title')}}</span>
