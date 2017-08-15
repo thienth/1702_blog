@@ -5,12 +5,22 @@
 		<form action="{{route('post.save')}}" method="post" novalidate enctype="multipart/form-data">
 			{{csrf_field()}}
 			<input type="hidden" name="id" value="{{old('id', $model->id)}}">
+			<input type="hidden" name="entity_type" value="{{$modelSlug->entity_type}}">
+
 			<div class="form-group">
 				<label for="title">Title</label>
 				<input id="title" type="text" 
 					value="{{old('title', $model->title)}}" name="title" class="form-control" placeholder="Post title">
 				@if (count($errors) > 0)
 					<span class="text-danger">{{$errors->first('title')}}</span>
+				@endif
+			</div>
+			<div class="form-group">
+				<label for="slug-url">Slug Url</label>
+				<input id="slug-url" type="text" 
+					value="{{old('slug', $modelSlug->slug)}}" name="slug" class="form-control" placeholder="Slug url">
+				@if (count($errors) > 0)
+					<span class="text-danger">{{$errors->first('slug')}}</span>
 				@endif
 			</div>
 			<div class="form-group">
@@ -69,5 +79,24 @@
   <script>
     ckeditor('short_desc');
     ckeditor('content');
+    $(document).ready(function(){
+		$('#title').on('keyup change', function(){
+			title = $(this).val();
+			if(title == ""){
+				$('#slug-url').val('');
+				return false;
+			}
+			$.ajax({
+				url: "{{ route('slug.generate') }}", 
+				type: 'GET',
+				data: {title: title},
+				dataType: 'JSON',
+				success: function(rp){
+					console.log(rp);
+					$('#slug-url').val(rp.data);
+				}
+			});
+		})
+	});	
 </script>
 @endsection

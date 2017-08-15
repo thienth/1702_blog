@@ -15,8 +15,8 @@
 				@endif
 			</div>
 			<div class="form-group">
-				<label for="cate-url">Slug Url</label>
-				<input id="cate-url" type="text" 
+				<label for="slug-url">Slug Url</label>
+				<input id="slug-url" type="text" 
 					value="{{old('slug', $modelSlug->slug)}}" name="slug" class="form-control" placeholder="Slug url">
 				@if (count($errors) > 0)
 					<span class="text-danger">{{$errors->first('slug')}}</span>
@@ -51,7 +51,7 @@
 			$('#cate-name').on('keyup change', function(){
 				title = $(this).val();
 				if(title == ""){
-					$('#cate-url').val('');
+					$('#slug-url').val('');
 					return false;
 				}
 				$.ajax({
@@ -61,7 +61,7 @@
 					dataType: 'JSON',
 					success: function(rp){
 						console.log(rp);
-						$('#cate-url').val(rp.data);
+						$('#slug-url').val(rp.data);
 					}
 				});
 			})

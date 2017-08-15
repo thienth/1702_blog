@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Repository\PostRepository;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\Slug;
 class PostController extends Controller
 {
     public function index(Request $request){
@@ -27,11 +28,14 @@ class PostController extends Controller
 
         // lấy ra model mẫu
         $model = new Post();
+        $modelSlug = new Slug();
+        $modelSlug->entity_type = $model->entityType;
+        $modelSlug->entity_id = $model->id;
         $listCate = Category::all();
         $listCate = get_options($listCate);
 
         Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
-        return view('admin.post.form', compact('model', 'listCate'));
+        return view('admin.post.form', compact('model', 'listCate', 'modelSlug'));
     }
 
     public function update($id){
@@ -39,11 +43,20 @@ class PostController extends Controller
 
         // lấy ra model mẫu
         $model = Post::find($id);
+        $modelSlug = Slug::where([
+                        'entity_type'=> $model->entityType,
+                        'entity_id'=> $model->id
+                                ])->first();
+        if(!$modelSlug){
+            $modelSlug = new Slug();
+            $modelSlug->entity_type = $model->entityType;
+            $modelSlug->entity_id = $model->id;
+        }
         $listCate = Category::all();
         $listCate = get_options($listCate);
 
         Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
-        return view('admin.post.form', compact('model', 'listCate'));
+        return view('admin.post.form', compact('model', 'listCate', 'modelSlug'));
     }
 
     public function save(SavePostRequest $rq){

@@ -68,6 +68,11 @@ class CategoryController extends Controller
                         'entity_type'=> $model->entityType,
                         'entity_id'=> $model->id
                                 ])->first();
+        if(!$modelSlug){
+            $modelSlug = new Slug();
+            $modelSlug->entity_type = $model->entityType;
+            $modelSlug->entity_id = $model->id;
+        }
         
         $listCate = Category::all();
         $listCate = get_options($listCate);
