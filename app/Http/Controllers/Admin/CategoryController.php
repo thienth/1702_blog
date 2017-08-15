@@ -73,7 +73,7 @@ class CategoryController extends Controller
         $listCate = get_options($listCate);
 
         Log::info("END " . get_class() . " => " . __FUNCTION__ ."()");
-        return view('admin.cate.form', compact('model', 'listCate'));
+        return view('admin.cate.form', compact('model', 'listCate', 'modelSlug'));
     }
 
     /**

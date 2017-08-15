@@ -6,6 +6,11 @@ Route::get('/check-url/{entityType}/{entityId}/{slug}', function($entityType, $e
 	$result = \App\Models\Slug::checkSlugExisted($entityType, $entityId, $slug);
 	return response()->json($result);
 });
+Route::get('/generate-slug/{title}', function($title){
+	$slug = str_slug(trim($title), '-');
+	$slug .= "-" . date('YmdHis', time());
+	return response()->json(['data' => $slug]);
+})->name('slug.generate');
 Route::group(['middleware' => 'auth'], function(){
 	
 	Route::get('/', function(){
