@@ -17,3 +17,6 @@ button.add-on-input{
     top: 27px;
     right: 2px;
 }
+label.error{
+	color: red!important;
+}

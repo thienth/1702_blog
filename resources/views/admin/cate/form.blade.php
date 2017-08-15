@@ -2,7 +2,7 @@
 @section('title', 'Category management')
 @section('content')
 	<div class="col-sm-6 col-sm-offset-3">
-		<form action="{{route('cate.save')}}" method="post" novalidate>
+		<form action="{{route('cate.save')}}" id="cateForm" method="post" novalidate>
 			{{csrf_field()}}
 			<input type="hidden" name="id" value="{{$model->id}}">
 			<input type="hidden" name="entity_type" value="{{$modelSlug->entity_type}}">
@@ -64,6 +64,19 @@
 						$('#slug-url').val(rp.data);
 					}
 				});
+			});
+			$('#cateForm').validate({
+				rules:{
+					cate_name: {
+						required: true,
+					},
+					slug: 'required'
+				},
+				messages: {
+					cate_name:{
+						required: 'Chuỵ Châm nói phải viết vào đây !!!!'
+					}
+				}
 			})
 		});
 	</script>
