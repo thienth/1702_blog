@@ -12,7 +12,7 @@ class Slug extends Model
     // Return true - không hợp lệ, đã có 
     // Return false - hợp lệ, chưa tồn tại hoặc tự sửa url của chính mình
     public static function checkSlugExisted($entityType, $entityId, $slugUrl){
-    	$model = Slug::andWhere('slug', $slugUrl)->first();
+    	$model = Slug::where('slug', $slugUrl)->first();
 		if(!$model){
 			return false;
 		}

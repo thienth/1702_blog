@@ -2,7 +2,10 @@
 /**
  * Dashboard
  */
-
+Route::get('/check-url/{entityType}/{entityId}/{slug}', function($entityType, $entityId, $slug){
+	$result = \App\Models\Slug::checkSlugExisted($entityType, $entityId, $slug);
+	return response()->json($result);
+});
 Route::group(['middleware' => 'auth'], function(){
 	
 	Route::get('/', function(){
