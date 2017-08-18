@@ -4,8 +4,8 @@
 	<div class="col-sm-6 col-sm-offset-3">
 		<form action="{{route('cate.save')}}" id="cateForm" method="post" novalidate>
 			{{csrf_field()}}
-			<input type="hidden" name="id" value="{{$model->id}}">
-			<input type="hidden" name="entity_type" value="{{$modelSlug->entity_type}}">
+			<input type="hidden" id="model_id" name="id" value="{{$model->id}}">
+			<input type="hidden" id="entity_type" name="entity_type" value="{{$modelSlug->entity_type}}">
 			<div class="form-group">
 				<label for="cate-name">Category name</label>
 				<input id="cate-name" type="text" 
@@ -70,11 +70,26 @@
 					cate_name: {
 						required: true,
 					},
-					slug: 'required'
+					slug: {
+						required: true,
+						remote: {
+							url: "{{ route('slug.existed') }}", 
+							type: 'POST',
+							data: {
+								_token: '{{csrf_token()}}',
+								entityType: $('#entity_type').val(),
+								entityId: $('#model_id').val(),
+								slug: $('#slug-url').val()
+							}
+						}
+					}
 				},
 				messages: {
 					cate_name:{
 						required: 'Chuỵ Châm nói phải viết vào đây !!!!'
+					},
+					slug: {
+						remote: 'Url này đã tồn tại, vui lòng chọn url khác'
 					}
 				}
 			})
