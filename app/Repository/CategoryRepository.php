@@ -4,6 +4,7 @@ use Log;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use DB;
+use App\Models\Slug;
 class CategoryRepository
 {
 	public static function GetAll(Request $request){
@@ -45,6 +46,20 @@ class CategoryRepository
 	        $model->fill($request->all());
 
 	        $model->save();
+
+	        DB::table('slugs')->where([
+                    ['entity_id', '=', $model->id],
+                    ['entity_type', '=', $model->entityType]
+                ])->delete();
+
+	        DB::table('slugs')->insert(
+	        	[
+	        		'entity_type' => $model->entityType,
+	        		'entity_id' => $model->id,
+	        		'slug' => $request->slug
+	        	]
+        	);
+
 	        DB::commit();
 	        // neu k co loi thi tien hanh return true
 	        Log::info('END ' 

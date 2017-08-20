@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Slug extends Model
 {
     protected $table = 'slugs';
+    // protected $primaryKey = ['entity_id', 'entity_type'];
+
+    public $timestamps = false;
 
     // Hàm kiểm tra xem 1 url có thể được insert vào csdl 
     // Return false - không hợp lệ, đã có 
