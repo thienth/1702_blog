@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
  */
 Route::post('/check-url', function(Request $request){
 	$result = \App\Models\Slug::checkSlugExisted($request->entityType, $request->entityId, $request->slug);
+
 	return response()->json($result);
 })->name('slug.existed');
 Route::get('/generate-slug', function(Request $request){

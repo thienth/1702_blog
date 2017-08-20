@@ -47,7 +47,34 @@
 @endsection
 @section('js')
 	<script type="text/javascript">
+		var response = false;
+		jQuery.validator.addMethod("checkUrl", function(value, element) {
+			  $.ajax({
+				url: "{{ route('slug.existed') }}", 
+				type: 'POST',
+				data: {
+					_token: '{{csrf_token()}}',
+					entityType: $('#entity_type').val(),
+					entityId: $('#model_id').val(),
+					slug: $('#slug-url').val()
+				},
+				dataType: 'JSON',
+				async: false,
+				success: function(rp){
+					response = rp;
+				}
+			});	
+			
+			return response;		
+		   
+		}, "Slug đã bị trùng, vui lòng chọn đường dẫn khác!");
 		$(document).ready(function(){
+			var remoteData = {
+				
+			}
+			$('#slug-url').on('keyup change', function(){
+				remoteData.slug = $(this).val();
+			});
 			$('#cate-name').on('keyup change', function(){
 				title = $(this).val();
 				if(title == ""){
@@ -72,24 +99,12 @@
 					},
 					slug: {
 						required: true,
-						remote: {
-							url: "{{ route('slug.existed') }}", 
-							type: 'POST',
-							data: {
-								_token: '{{csrf_token()}}',
-								entityType: $('#entity_type').val(),
-								entityId: $('#model_id').val(),
-								slug: $('#slug-url').val()
-							}
-						}
+						checkUrl: true
 					}
 				},
 				messages: {
 					cate_name:{
 						required: 'Chuỵ Châm nói phải viết vào đây !!!!'
-					},
-					slug: {
-						remote: 'Url này đã tồn tại, vui lòng chọn url khác'
 					}
 				}
 			})

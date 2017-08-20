@@ -36,7 +36,12 @@ class CategoryRepository
 		// try
 		try{
 
-			$model = new Category();
+			if($request->id > 0){
+				$model = Category::find($request->id);
+			}else{
+				$model = new Category();
+			}
+
 	        $model->fill($request->all());
 
 	        $model->save();
