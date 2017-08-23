@@ -12,9 +12,7 @@
 */
 use Illuminate\Support\Facades\Mail;
 use App\Models\Category;
-Route::get('/', function (){
-	return 'homepage';
-})->name('homepage');
+Route::get('/', 'Client\HomepageController@index')->name('homepage');
 
 Route::get('/403-forbidden', function(){
 	return view('forbidden');
@@ -46,4 +44,14 @@ Route::get('send-mail', function(){
 	});
 	return 'done!';
 });
+
+Route::get('/{slug}', 'Client\HomepageController@getContent');
+
+
+
+
+
+
+
+
 

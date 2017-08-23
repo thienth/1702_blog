@@ -20,7 +20,8 @@ class PostTableSeeder extends Seeder
         			'short_desc' => $faker->realText($maxNbChars = 150),
         			'content' => $faker->realText($maxNbChars = 500),
         			'author' => $faker->name,
-        			'created_by' => -1
+        			'created_by' => -1,
+                    'cate_id' => rand(2, 8)
         		]
     		);
         }

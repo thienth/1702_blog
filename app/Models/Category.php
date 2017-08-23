@@ -27,4 +27,20 @@ class Category extends Model
     	   return $parent->cate_name;
         return null;
     }
+
+    public function getTopPost($limit){
+        $posts = Post::where('cate_id', $this->id)->limit($limit)->get();
+        return $posts;
+    }
+
+    public function getSlug(){
+        $slug = Slug::where([
+                'entity_type' => $this->entityType,
+                'entity_id' => $this->id
+            ])->first();
+        if($slug){
+            return $slug->slug;
+        }
+        return null;
+    }
 }

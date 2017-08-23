@@ -42,5 +42,14 @@ if(!function_exists('get_in_array')){
   }
 }
 
+if(!function_exists('slug_generate')){
+  function slug_generate($name){
+    $slug = null;
+    $slug = str_slug(trim($name), '-');
+    $slug .= "-" . date('YmdHis', time());
+    return $slug;
+  }
+}
+
 
  ?>

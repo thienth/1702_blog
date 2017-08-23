@@ -15,4 +15,15 @@ class Post extends Model
 	{
 	    return $this->belongsTo('App\Models\Category', 'cate_id');
 	}
+
+	public function getSlug(){
+		$slug = Slug::where([
+				'entity_type' => $this->entityType,
+				'entity_id' => $this->id
+			])->first();
+		if($slug){
+			return $slug->slug;
+		}
+		return null;
+	}
 }
