@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="{{ asset('plugins/bootstrap/css/bootstrap.min.css') }}">
 </head>
 <body>
-	{{$username}}
+	
 	<div class="container">
 		@foreach ($cates as $c)
 			<div class="category-list">

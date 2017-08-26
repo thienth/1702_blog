@@ -15,11 +15,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if(Auth::check()){
-            view()->share('username', Auth::user()->name);
-        }else{
-            view()->share('username', "");
-        }
+        // if(Auth::check()){
+        //     view()->share('username', Auth::user()->name);
+        // }else{
+        //     view()->share('username', "");
+        // }
         
     }
 
